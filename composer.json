@@ -1,0 +1,18 @@
+{
+    "name": "chekun/weixin-biz",
+    "description": "Weixin Biz PHP Library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "chekun",
+            "email": "234267695@qq.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-0": {
+            "Weixin\\Biz": "src"
+        }
+    }
+}
