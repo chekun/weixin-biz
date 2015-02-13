@@ -1,7 +1,7 @@
 Weixin Biz Dev Package
 ============================
 
-[![Build Status](https://travis-ci.org/weixin/weixinbz.svg?branch=master)](https://travis-ci.org/chekun/weixinbz)
+[![Build Status](https://travis-ci.org/weixin/weixin-biz.svg?branch=master)](https://travis-ci.org/chekun/weixin-biz)
 
 
 ### The MIT License (MIT)
