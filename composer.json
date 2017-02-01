@@ -1,18 +1,23 @@
 {
     "name": "chekun/weixin-biz",
-    "description": "Weixin Biz PHP Library",
+    "description": "Weixin Biz PHP Library(PHP版微信企业号开发包)",
     "license": "MIT",
     "authors": [
         {
             "name": "chekun",
-            "email": "234267695@qq.com"
+            "email": "mr.che.kun@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.7"
+    },
     "autoload": {
         "psr-0": {
             "Weixin\\Biz": "src"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }

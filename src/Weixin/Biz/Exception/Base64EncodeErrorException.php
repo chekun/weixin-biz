@@ -1,8 +1,11 @@
-<?php namespace Weixin\Biz\Exception;
+<?php 
+
+namespace Weixin\Biz\Exception;
 
 use Exception;
 
-class Base64EncodeErrorException extends Exception {
+class Base64EncodeErrorException extends Exception 
+{
 
     public function __construct()
     {

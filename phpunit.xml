@@ -15,4 +15,10 @@
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="WECHAT_CORP_ID" value="wx1823bf96d3bd56c7"/>
+        <env name="WECHAT_AGENT_ID" value="1"/>
+        <env name="WECHAT_AGENT_TOKEN" value="QDG6eK"/>
+        <env name="WECHAT_AGENT_AES" value="jWmYm7qr5nMoAUwZRjGtBxmz3KA1tkAj3ykkR6q2B2C"/>
+    </php>
 </phpunit>

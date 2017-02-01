@@ -1,9 +1,12 @@
-<?php namespace Weixin\Biz\Hash;
+<?php 
+
+namespace Weixin\Biz\Hash;
 
 use Exception;
 use Weixin\Biz\SignatureComputeErrorException;
 
-class Hash {
+class Hash 
+{
 
     public static function sha1($token, $timestamp, $nonce, $encrypt)
     {

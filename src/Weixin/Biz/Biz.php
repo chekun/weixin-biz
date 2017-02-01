@@ -1,4 +1,6 @@
-<?php namespace Weixin\Biz;
+<?php 
+
+namespace Weixin\Biz;
 
 use Weixin\Biz\Encrypt\Prp;
 use Weixin\Biz\Hash\Hash;
@@ -6,15 +8,16 @@ use Weixin\Biz\Message\Message;
 use Weixin\Biz\Exception\IllegalAesKeyException;
 use Weixin\Biz\Exception\SignatureValidateErrorException;
 
-class Biz {
+class Biz 
+{
 
-    protected $token = null;
+    protected $token;
 
-    protected $aesKey = null;
+    protected $aesKey;
 
-    protected $corpId = null;
+    protected $corpId;
 
-    protected $prp = null;
+    protected $prp;
 
     public function __construct($token, $aesKey, $corpId)
     {
@@ -34,12 +37,11 @@ class Biz {
 
         $shaSignature = Hash::sha1($this->token, $timestamp, $nonce, $echoStr);
 
-        if ($signature != $shaSignature) {
+        if ($signature !== $shaSignature) {
             throw new SignatureValidateErrorException();
         }
 
         return $this->prp->decode($echoStr, $this->corpId);
-
     }
 
     public function packMessage($replyMessage, $timestamp, $nonce)
@@ -49,7 +51,7 @@ class Biz {
             $timestamp = time();
         }
         $shaSignature = Hash::sha1($this->token, $timestamp, $nonce, $encrypt);
-        return Message::encode($encrypt, $signature, $timestamp, $nonce);
+        return Message::encode($encrypt, $shaSignature, $timestamp, $nonce);
     }
 
     public function unpackMessage($signature, $timestamp, $nonce, $postData)

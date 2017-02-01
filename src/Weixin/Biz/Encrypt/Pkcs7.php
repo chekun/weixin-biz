@@ -1,6 +1,9 @@
-<?php namespace Weixin\Biz\Encrypt;
+<?php 
 
-class Pkcs7 {
+namespace Weixin\Biz\Encrypt;
+
+class Pkcs7 
+{
 
     const BLOCK_SIZE = 32;
 
@@ -27,6 +30,5 @@ class Pkcs7 {
         }
         return substr($text, 0, strlen($text) - $pad);
     }
-
 
 }

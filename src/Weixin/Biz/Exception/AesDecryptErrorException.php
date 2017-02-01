@@ -1,8 +1,11 @@
-<?php namespace Weixin\Biz\Exception;
+<?php 
+
+namespace Weixin\Biz\Exception;
 
 use Exception;
 
-class AesDecryptErrorException extends Exception {
+class AesDecryptErrorException extends Exception 
+{
 
     public function __construct()
     {

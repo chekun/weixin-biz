@@ -1,22 +1,34 @@
 <?php
 
 use Weixin\Biz\Biz;
+use Weixin\Biz\Hash\Hash;
+use Weixin\Biz\Encrypt\Prp;
 
-class UrlVerifyTest extends PHPUnit_Framework_TestCase {
+class UrlVerifyTest extends PHPUnit_Framework_TestCase 
+{
 
     public function testVerifyUrl()
     {
-        $aesKey = "jWmYm7qr5nMoAUwZRjGtBxmz3KA1tkAj3ykkR6q2B2C";
-        $token = "QDG6eK";
-        $corpId = "wx5823bf96d3bd56c7";
-
-        $signature = "5c45ff5e21c57e6ad56bac8758b79b1d9ac89fd3";
-        $timestamp = "1409659589";
-        $nonce = "263014780";
-        $echoStr = "P9nAzCzyDtyTWESHep1vC5X9xho/qYX3Zpb4yKa9SKld1DsH3Iyt3tP3zNdtp+4RPcs8TgAE7OaBO+FZXvnaqQ==";
-
+        $aesKey = getenv('WECHAT_AGENT_AES');
+        $token = getenv('WECHAT_AGENT_TOKEN');
+        $corpId = getenv('WECHAT_CORP_ID');
+        //生成验证URL的参数
+        $prp = new Prp($aesKey);
+        $timestamp = time();
+        $nonce = uniqid();
+        $echoStr = 'Hello,WeixinBiz.';
+        $encryptedEchoStr = $prp->encode($echoStr, $corpId);
+        $signature = Hash::sha1(
+            $token,
+            $timestamp,
+            $nonce,
+            $encryptedEchoStr
+        );
         $biz = new Biz($token, $aesKey, $corpId);
-        $this->assertEquals($biz->verifyUrl($signature, $timestamp, $nonce, $echoStr), '1616140317555161061');
+        $this->assertEquals(
+            $biz->verifyUrl($signature, $timestamp, $nonce, $encryptedEchoStr),
+            $echoStr
+        );
     }
 
 }

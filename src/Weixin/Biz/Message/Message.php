@@ -1,10 +1,13 @@
-<?php namespace Weixin\Biz\Message;
+<?php 
 
-use DOMDocument;
+namespace Weixin\Biz\Message;
+
 use Exception;
+use DOMDocument;
 use Weixin\Biz\Exception\XmlDecodeErrorException;
 
-class Message {
+class Message 
+{
 
     const ENCRYPT_TAG_NAME = 'Encrypt';
 
@@ -17,11 +20,11 @@ class Message {
             $xml->loadXML($xmlText);
             $encrypt = $xml->getElementsByTagName(static::ENCRYPT_TAG_NAME)
                 ->item(0)
-                ->nodeValue();
+                ->nodeValue;
             $toUsername = $xml->getElementsByTagName(static::TO_USERNAME_TAG_NAME)
                 ->item(0)
-                ->nodeValue();
-            return array($encrypt, $toUsername);
+                ->nodeValue;
+            return [$encrypt, $toUsername];
         } catch (Exception $e) {
             throw new XmlDecodeErrorException();
         }
@@ -29,14 +32,12 @@ class Message {
 
     public static function encode($encrypt, $signature, $timestamp, $nonce)
     {
-        $format = '
-            <xml>
-                <Encrypt><![CDATA[%s]]></Encrypt>
-                <MsgSignature><![CDATA[%s]]></MsgSignature>
-                <TimeStamp>%s</TimeStamp>
-                <Nonce><![CDATA[%s]]></Nonce>
-            </xml>
-        ';
+        $format = '<xml>
+    <Encrypt><![CDATA[%s]]></Encrypt>
+    <MsgSignature><![CDATA[%s]]></MsgSignature>
+    <TimeStamp>%s</TimeStamp>
+    <Nonce><![CDATA[%s]]></Nonce>
+</xml>';
         return sprintf($format, $encrypt, $signature, $timestamp, $nonce);
     }
 
